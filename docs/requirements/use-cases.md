@@ -2463,7 +2463,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 **Main Success Scenario:**
 1. The instructor indicates to remind students who have not submitted and selects a course section.
 2. The system determines which artifacts are currently open for submission according to "Which artifacts are open" in the Associated Information, and finds each student who has not submitted each open artifact according to "Has not submitted".
-3. The system displays, per artifact, each such student with her team and the number of reminders already sent for that artifact and week, and separately lists the students excluded from reminding and why.
+3. The system displays, per artifact, each such student with her team and the number of reminders already sent today for that artifact, and separately lists the students excluded from reminding and why.
 4. The instructor selects the students to remind (all by default) and confirms.
 5. The system re-checks each selected student at send time and drops any who have since submitted or who have reached the reminder limit (BR-reminder-limit).
 6. The system emails each remaining student a reminder that names only her own missing artifact(s), the week each is for, and when each closes.
@@ -2491,7 +2491,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 - **5a. A student submits between the listing and the sending**
   - 5a1. The system skips her and counts her as skipped.
 - **5b. A student has reached the reminder limit**
-  - 5b1. The system skips her, reports her as skipped for that reason, and does not send (BR-reminder-limit).
+  - 5b1.The system skips her for that artifact only, reports the skip and its reason, and still reminds her about any other artifact she is missing (BR-reminder-limit).
 - **5c. The submission window closes between the listing and the sending**
   - 5c1. The system skips that artifact for every student and reports it.
 - **6a. The mail server rejects a student's address**
