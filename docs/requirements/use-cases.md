@@ -2466,7 +2466,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 3. The system displays, per artifact, each such student with her team and the number of reminders already sent today for that artifact, and separately lists the students excluded from reminding and why.
 4. The instructor selects the students to remind (all by default) and confirms.
 5. The system re-checks each selected student at send time and drops any who have since submitted or who have reached the reminder limit (BR-reminder-limit).
-6. The system emails each remaining student a reminder that names only her own missing artifact(s), the week each is for, and when each closes.
+6. The system emails each remaining student a reminder that names only her own missing artifact(s), the week each is for and, for a peer evaluation, when its submission window closes.
 7. The system records each delivered reminder.
 8. The system displays a summary of reminders sent, skipped, and failed.
 9. Use case ends.
