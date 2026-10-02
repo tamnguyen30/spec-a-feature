@@ -2505,6 +2505,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 - Which artifacts are open: a peer evaluation is open for the previous week if that week is active and its one-week window has not closed; a WAR is open for the current week.
 - Excluded students: not assigned to a team; deactivated.
 - Privacy: a reminder goes only to its recipient and discloses only her own status, never another student's (CO-ferpa).
+  - Scope: this use case does not change the scheduled weekly reminder (FR-NOT-weekly-reminder); having the scheduler skip students who have already submitted is a separate use case.
 
 **Related Use Cases:** UC-EVA-section-evaluation-report (already lists who did not turn in an evaluation; the definitions must agree); UC-EVA-submit-evaluation; UC-WAR-manage-activities
 **Assumptions:** AS-war-submitted-means-any-activity (the WAR use cases define no submit action)
