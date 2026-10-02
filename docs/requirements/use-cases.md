@@ -2509,8 +2509,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 
 **Related Use Cases:** UC-EVA-section-evaluation-report (already lists who did not turn in an evaluation; the definitions must agree); UC-EVA-submit-evaluation; UC-WAR-manage-activities
 **Assumptions:** AS-war-submitted-means-any-activity (the WAR use cases define no submit action)
-**Open Issues:** (1) No business rule gives a WAR submission window. (2) UC-WAR-manage-activities says to select an active week, while BR-active-weeks says a WAR may be submitted regardless of active weeks. (3) Whether scheduler reminders count toward the reminder limit.
-
+**Open Issues:** (1) No business rule gives a WAR submission window. (2) UC-WAR-manage-activities says to select an active week, while BR-active-weeks says a WAR may be submitted regardless of active weeks.
 
 ## **Templates and Provisioning**
 
