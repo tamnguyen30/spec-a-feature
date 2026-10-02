@@ -2441,8 +2441,79 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 **Related Use Cases:**
 **Assumptions:**
 **Open Issues:**
+### **UC-EVA-nudge-non-submitters: The instructor reminds students who have not submitted**
+
+**UC ID and Name:** UC-EVA-nudge-non-submitters: Remind students who have not submitted
+**Created By:**
+**Date Created:**
+**Primary Actor:** instructor
+**Secondary Actors:** student (recipient of the reminder)
+**Trigger:** The instructor indicates to remind the students of a course section who have not yet submitted a weekly activity report or a peer evaluation.
+**Description:** The instructor wants to see which students still owe a submission and remind only those students, so that students who have already submitted are not nagged and students who have not are prompted while submitting is still possible.
+
+**Preconditions:**
+- PRE-1. The instructor is logged into the system.
+- PRE-2. The instructor is assigned to the course section (BR-section-scoped-access).
+
+**Postconditions:**
+- POST-1. Each student who was eligible and selected has been emailed a reminder naming only the artifact(s) she has not submitted.
+- POST-2. Each delivered reminder is recorded (student, artifact, week, time).
+- POST-3. The instructor has been shown how many reminders were sent, skipped (with reason), and failed.
+
+**Main Success Scenario:**
+1. The instructor indicates to remind students who have not submitted and selects a course section.
+2. The system determines which artifacts are currently open for submission according to "Which artifacts are open" in the Associated Information, and finds each student who has not submitted each open artifact according to "Has not submitted".
+3. The system displays, per artifact, each such student with her team and the number of reminders already sent for that artifact and week, and separately lists the students excluded from reminding and why.
+4. The instructor selects the students to remind (all by default) and confirms.
+5. The system re-checks each selected student at send time and drops any who have since submitted or who have reached the reminder limit (BR-reminder-limit).
+6. The system emails each remaining student a reminder that names only her own missing artifact(s), the week each is for, and when each closes.
+7. The system records each delivered reminder.
+8. The system displays a summary of reminders sent, skipped, and failed.
+9. Use case ends.
+
+**Extensions:**
+- **1a. The instructor is not assigned to the selected course section**
+  - 1a1. The system does not offer that course section or show any of its students (BR-section-scoped-access).
+- **2a. No artifact is currently open for submission**
+  - 2a1. The system informs the instructor that nothing can currently be submitted, so a reminder cannot help.
+  - 2a2. Use case ends.
+- **2b. Only one of the two artifacts is open**
+  - 2b1. The system lists and reminds for that artifact only. (A WAR may be open when the evaluated week is inactive, per BR-active-weeks.)
+- **2c. Every student has submitted every open artifact**
+  - 2c1. The system informs the instructor that no one needs a reminder.
+  - 2c2. Use case ends.
+- **3a. A student is not assigned to a team**
+  - 3a1. The system leaves her off the reminder list and shows her under "excluded: not assigned to a team", since she cannot submit either artifact (BR-team-assignment-required).
+- **3b. A student's account is deactivated**
+  - 3b1. The system leaves her off the reminder list and shows her under "excluded: deactivated" (BR-student-lifecycle).
+- **3c. A student submitted a WAR and then deleted all of her activities for that week**
+  - 3c1. The system treats her as not having submitted.
+- **5a. A student submits between the listing and the sending**
+  - 5a1. The system skips her and counts her as skipped.
+- **5b. A student has reached the reminder limit**
+  - 5b1. The system skips her, reports her as skipped for that reason, and does not send (BR-reminder-limit).
+- **5c. The submission window closes between the listing and the sending**
+  - 5c1. The system skips that artifact for every student and reports it.
+- **6a. The mail server rejects a student's address**
+  - 6a1. The system logs the failure, continues with the remaining students, reports her as failed, and does not count it toward her reminder limit.
+
+**Priority:** Medium
+**Frequency of Use:** Approximately 2 users, average of 1 usage per week during active weeks.
+**Business Rules:** BR-section-scoped-access, BR-role-based-access, BR-team-assignment-required, BR-active-weeks, BR-evaluation-submission-window, BR-student-lifecycle, BR-reminder-limit
+**Associated Information:**
+- Has not submitted: a student has not submitted a peer evaluation for week E if no peer evaluation by her for E is stored; she has not submitted a WAR for week W if her WAR for W has no activities. This is assessed per artifact and per week, so a student who has submitted one but not the other is a non-submitter for the other only.
+- Which artifacts are open: a peer evaluation is open for the previous week if that week is active and its one-week window has not closed; a WAR is open for the current week.
+- Excluded students: not assigned to a team; deactivated.
+- Privacy: a reminder goes only to its recipient and discloses only her own status, never another student's (CO-ferpa).
+
+**Related Use Cases:** UC-EVA-section-evaluation-report (already lists who did not turn in an evaluation; the definitions must agree); UC-EVA-submit-evaluation; UC-WAR-manage-activities
+**Assumptions:** AS-war-submitted-means-any-activity (the WAR use cases define no submit action)
+**Open Issues:** (1) No business rule gives a WAR submission window. (2) UC-WAR-manage-activities says to select an active week, while BR-active-weeks says a WAR may be submitted regardless of active weeks. (3) Whether scheduler reminders count toward the reminder limit.
+
 
 ## **Templates and Provisioning**
+
+
 
 ### **UC-TPL-provision-documents: The course admin creates team documents from built-in templates**
 
